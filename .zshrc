@@ -36,4 +36,4 @@ RPS1=' %~' # PROMPT on the right side of the screen. Dissapears when typed over.
 # setopt hup # Set to leave background processes running when shell exits.
 # Functions
 # End of lines added manually
-alias config='/usr/bin/git --git-dir=/home/sujuka99/.cfg/ --work-tree=/home/sujuka99' # Alias for the bare git repository with dotfiles .cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # Alias for the bare git repository with dotfiles .cfg
