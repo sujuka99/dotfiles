@@ -2,6 +2,13 @@
 local cmd, fn, opt = vim.cmd, vim.fn, vim.opt
 local command = vim.api.nvim_create_user_command
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -20,6 +27,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins")
+
+-- empty nvim-tree setup using defaults
+require("nvim-tree").setup()
 
 -- LSP Zero
 local lsp = require('lsp-zero').preset({
