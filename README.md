@@ -38,3 +38,6 @@ My Zsh config.
 
 My Neovim config.
 
+### i3
+
+My i3 config.
