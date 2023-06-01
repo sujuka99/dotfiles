@@ -35,5 +35,20 @@ PS1="[%{${fg[cyan]}%}%n%{$reset_color%}@%{${fg[red]}%}%m%{$reset_color%}]%1~%{${
 RPS1=' %~' # PROMPT on the right side of the screen. Dissapears when typed over.
 # setopt hup # Set to leave background processes running when shell exits.
 # Functions
-# End of lines added manually
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+export PATH="$PATH:/home/ivanyordanov/Programs/k9s"
+export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+# User specific aliases and functions
+
+alias tk="poetry run pytest; poetry run pre-commit run -a"
+alias tkpre="poetry run pre-commit run -a"
+# End of lines added manually
+
