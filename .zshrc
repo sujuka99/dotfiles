@@ -47,8 +47,10 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 # User specific aliases and functions
-
 alias tk="poetry run pytest; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
+# Variables
+export VISUAL=nvim;
+export EDITOR=nvim;
 # End of lines added manually
 
