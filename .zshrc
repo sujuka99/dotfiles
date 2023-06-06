@@ -49,6 +49,7 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 # User specific aliases and functions
 alias tk="poetry run pytest; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
+alias ranger=". ranger"
 # Variables
 export VISUAL=nvim;
 export EDITOR=nvim;
