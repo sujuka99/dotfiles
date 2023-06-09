@@ -50,6 +50,7 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 alias tk="poetry run pytest; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
 # Variables
+# Ranger will use these to determine the default editor
 export VISUAL=nvim;
 export EDITOR=nvim;
 # End of lines added manually
