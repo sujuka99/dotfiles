@@ -47,7 +47,7 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 # User specific aliases and functions
-alias tk="poetry run pytest; poetry run pre-commit run -a"
+alias tk="poetry run pytest -vv; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
 # Variables
 # Ranger will use these to determine the default editor
