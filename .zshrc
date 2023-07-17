@@ -4,7 +4,7 @@ HISTSIZE=5000
 SAVEHIST=1000
 setopt nomatch
 unsetopt autocd beep extendedglob
-bindkey -v
+bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/sujuka99/.zshrc'
@@ -49,6 +49,8 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 # User specific aliases and functions
 alias tk="poetry run pytest -vv; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
+alias battery_status="upower -i `upower -e | grep 'BAT'`"
+alias battery_percentage="battery_status | grep 'percentage'"
 # Variables
 # Ranger will use these to determine the default editor
 export VISUAL=nvim;
