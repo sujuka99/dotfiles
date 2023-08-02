@@ -33,23 +33,24 @@ require("nvim-tree").setup()
 require("nvim-tree.api").tree.open()
 
 -- LSP Zero
-local lsp = require('lsp-zero').preset({
-    name = 'minimal',
-    set_lsp_keymaps = true,
-    manage_nvim_cmp = true,
-    suggest_lsp_servers = false,
-})
+-- local lsp = require('lsp-zero').preset({
+--     name = 'minimal',
+--     set_lsp_keymaps = true,
+--     manage_nvim_cmp = true,
+--     suggest_lsp_servers = false,
+-- })
+
 -- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
-lsp.setup()
+-- lsp.nvim_workspace()
+-- lsp.setup()
 
 -----------------------------------------------------------------------------//
--- Utils {{{1
+-- Utils
 -----------------------------------------------------------------------------//
 opt.clipboard = 'unnamedplus'
 
 -----------------------------------------------------------------------------//
--- Indentation {{{1
+-- Indentation
 -----------------------------------------------------------------------------//
 opt.expandtab = true -- Use spaces instead of tabs
 opt.shiftwidth = 4 -- Size of an indent
@@ -60,7 +61,7 @@ opt.shiftround = true -- Round indent
 opt.joinspaces = false -- No double spaces with join after a dot
 
 -----------------------------------------------------------------------------//
--- Display {{{1
+-- Display
 -----------------------------------------------------------------------------//
 opt.number = true -- line numbers
 opt.relativenumber = false -- relative line numbers
@@ -79,7 +80,7 @@ opt.listchars = {
 }
 
 -----------------------------------------------------------------------------//
--- Title {{{1
+-- Title
 -----------------------------------------------------------------------------//
 --opt.titlestring = '❐ %t'
 --opt.titleold = '%{fnamemodify(getcwd(), ":t")}'
