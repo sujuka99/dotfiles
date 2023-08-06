@@ -6,9 +6,9 @@ return {
   },
   config = function()
     require("nvim-tree").setup {
-      git = {
-        ignore = false,
-      }
+      filters = {
+        git_ignored = false,
+      },
     }
   end,
 }

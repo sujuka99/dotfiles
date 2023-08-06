@@ -25,6 +25,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- set Leader before plugins setup
 vim.g.mapleader = " "
+vim.g.maplocalleader = ','
 
 require("lazy").setup("plugins")
 
@@ -78,6 +79,7 @@ opt.listchars = {
     precedes = '…',
     trail = '·',
 }
+opt.showmode = true -- display the current mode in the status line
 
 -----------------------------------------------------------------------------//
 -- Title
@@ -87,8 +89,13 @@ opt.listchars = {
 --opt.title = true -- show info in the window title
 --opt.titlelen = 70
 
+-----------------------------------------------------------------------------//
+-- Mappings 
+-----------------------------------------------------------------------------//
 
--- display the current mode in the status line
-opt.showmode = true
+-- sensible defaults
+vim.keymap.set('', 'Q', '') -- disable
+vim.keymap.set('n', 'x', '"_x') -- delete char without yank
+vim.keymap.set('x', 'x', '"_x') -- delete visual selection without yank
 
 print("Loaded nvim/init.lua")

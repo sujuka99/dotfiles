@@ -34,6 +34,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Enable tap to click on touchpad DELL Precision 7520
+exec --no-startup-id xinput set-prop "DLL07B0:01 044E:120B" "libinput Tapping Enabled" 1 
+# Enable natural scrolling
+exec --no-startup-id xinput set-prop "DLL07B0:01 044E:120B" "libinput Natural Scrolling Enabled" 1
+
 # Switch between keyboard layouts
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,bg -variant ,phonetic -option grp:alt_shift_toggle"
 
