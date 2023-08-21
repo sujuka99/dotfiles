@@ -51,6 +51,7 @@ alias tk="poetry run pytest -vv; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
 alias battery_status="upower -i `upower -e | grep 'BAT'`"
 alias battery_percentage="battery_status | grep 'percentage'"
+alias snx_up='zsh $HOME/.config/scripts/bakdata/snx_up.sh'
 # Variables
 # Ranger will use these to determine the default editor
 export VISUAL=nvim;
