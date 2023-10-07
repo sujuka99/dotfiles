@@ -1,5 +1,5 @@
 return {
-    'nvim-telescope/telescope.nvim', tag = '0.1.2',
+    'nvim-telescope/telescope.nvim', tag = '0.1.3',
 -- or                              , branch = '0.1.x',
     keys = {
         {
@@ -7,9 +7,24 @@ return {
             '<cmd>Telescope find_files<cr>',
             desc = 'Telescope find_files',
         },
+        {
+            '<leader>fg',
+            '<cmd>Telescope live_grep<cr>',
+            desc = 'Telescope live_grep',
+        },
+        {
+            '<leader>fb',
+            '<cmd>Telescope buffers<cr>',
+            desc = 'Telescope buffers',
+        },
+        {
+            '<leader>fh',
+            '<cmd>Telescope help_tags<cr>',
+            desc = 'Telescope help_tags',
+        },
     },
     dependencies = {
-	'nvim-lua/plenary.nvim',
-	'BurntSushi/ripgrep'
+        'nvim-lua/plenary.nvim',
+        'BurntSushi/ripgrep'
     }
 }
