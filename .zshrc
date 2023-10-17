@@ -52,8 +52,9 @@ alias tkpre="poetry run pre-commit run -a"
 alias ruff_check_global="ruff check --config $HOME/.config/ruff/ruff.toml"
 alias battery_status="upower -i `upower -e | grep 'BAT'`"
 alias battery_percentage="battery_status | grep 'percentage'"
-alias snx_up='zsh $HOME/.config/scripts/bakdata/snx_up.sh'
-alias drc='ruff check --config $HOME/.config/ruff/ruff.toml'
+alias snx_up="zsh $HOME/.config/scripts/bakdata/snx_up.sh"
+alias drc="ruff check --config $HOME/.config/ruff/ruff.toml"
+alias poetry_reinstall="poetry lock --no-update && poetry install --sync"
 # Variables
 # Ranger will use these to determine the default editor
 export VISUAL=nvim;
