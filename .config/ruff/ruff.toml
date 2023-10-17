@@ -1,7 +1,7 @@
 preview = true
 ignore = [
   "E203", # whitespace before ':' -- Not PEP8 compliant, black won't correct it, add when out of nursery
-  "E501", # Line too long -- Clashes with `black`
+  # "E501", # Line too long -- Clashes with `black`
   "D1", # Missing docstring for {} -- Inconvenient to enforce
 # The following "D" rules do not correspond to our coding style. We use the pep257 convention, but
 # "D212" should not be ignored. In ruff (0.0.291) we cannot select a rule that is excluded by specifying
