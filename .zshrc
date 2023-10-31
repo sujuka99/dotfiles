@@ -47,6 +47,7 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 # User specific aliases and functions
+alias vim="nvim"
 alias tk="poetry run pytest -vv; poetry run pre-commit run -a"
 alias tkpre="poetry run pre-commit run -a"
 alias ruff_check_global="ruff check --config $HOME/.config/ruff/ruff.toml"
@@ -55,6 +56,12 @@ alias battery_percentage="battery_status | grep 'percentage'"
 alias snx_up="zsh $HOME/.config/scripts/bakdata/snx_up.sh"
 alias drc="ruff check --config $HOME/.config/ruff/ruff.toml"
 alias poetry_reinstall="poetry lock --no-update && poetry install --sync"
+
+# Changing "ls" to "eza"
+alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+alias la='eza -a --color=always --group-directories-first'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first'  # long format
+alias lt='eza -aT --color=always --group-directories-first' # tree listing
 # Variables
 # Ranger will use these to determine the default editor
 export VISUAL=nvim;
