@@ -48,8 +48,8 @@ export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 # export SYSTEMD_PAGER=
 # User specific aliases and functions
 alias vim="nvim"
-alias tk="poetry run pytest -vv; poetry run pre-commit run -a"
-alias tkpre="poetry run pre-commit run -a"
+alias pt="poetry run pytest -vv; poetry run pre-commit run -a; git status"
+alias ptpre="poetry run pre-commit run -a; git status"
 alias ruff_check_global="ruff check --config $HOME/.config/ruff/ruff.toml"
 alias battery_status="upower -i `upower -e | grep 'BAT'`"
 alias battery_percentage="battery_status | grep 'percentage'"
@@ -62,6 +62,14 @@ alias ls='eza -al --color=always --group-directories-first' # my preferred listi
 alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
+
+# Query daewy data-fixture with file path as arg
+sendQueryDaewy()
+{
+    query=$(cat "$1")
+    poetry run regelwerk-parameters --query "$query" --source-file ta7-data/FT_V2_TA7_Sammelrechnung_Bundle-modified.json | jq .
+}
+
 # Variables
 # Ranger will use these to determine the default editor
 export VISUAL=nvim;
