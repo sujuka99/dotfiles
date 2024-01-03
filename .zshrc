@@ -63,6 +63,11 @@ alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 
+# Bluetooth
+alias bt='bluetoothctl'
+alias btc='bluetoothctl connect'
+alias btd='bluetoothctl disconnect'
+
 # Query daewy data-fixture with file path as arg
 sendQueryDaewy()
 {

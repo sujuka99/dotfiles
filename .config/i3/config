@@ -43,7 +43,12 @@ exec --no-startup-id xinput set-prop "DLL07B0:01 044E:120B" "libinput Natural Sc
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,bg -variant ,phonetic -option grp:alt_shift_toggle"
 
 # Set second screen up
-exec_always --no-startup-id "xrandr --output eDP1 --primary --mode 1920x1080 --rate 60.00 --output HDMI2 --mode 1280x1024 --rate 60.00 --right-of eDP1"
+exec_always --no-startup-id "xrandr --output eDP-1 --mode 1920x1080 --rate 60.00 --primary"
+exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1280x1024 --rate 60.00 --left-of eDP-1"
+# exec_always --no-startup-id "xrandr --output HDMI2 --mode 1280x1024 --rate 60.00 --right-of eDP-1"
+# exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
+# exec_always --no-startup-id "xrandr --output DP-2-2 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
+# exec_always --no-startup-id "xrandr --output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -160,6 +165,10 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# scratchpad
+bindsym $mod+m move scratchpad
+bindsym $mod+o scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -215,6 +224,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+# bar {
+#         status_command i3status
+# }
+
+# Star polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh

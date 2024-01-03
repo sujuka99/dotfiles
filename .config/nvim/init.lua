@@ -73,7 +73,7 @@ require('mason-lspconfig').setup({
 -- Utils
 -----------------------------------------------------------------------------//
 opt.clipboard = 'unnamedplus'
-opt.autochdir = true
+opt.autochdir = false
 
 -----------------------------------------------------------------------------//
 -- Indentation
