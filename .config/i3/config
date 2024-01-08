@@ -125,6 +125,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+# Show polybar
+bindsym $mod+i exec "polybar-msg action '#memory.module_toggle'; polybar-msg action '#cpu.module_toggle'; polybar-msg action '#wlan.module_toggle'; polybar-msg action '#eth.module_toggle'"
+
 # focus the child container
 #bindsym $mod+d focus child
 

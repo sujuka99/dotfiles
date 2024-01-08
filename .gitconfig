@@ -3,3 +3,5 @@
 	email = i.p.yordanov@proton.me
 [rerere]
 	enabled = true
+[credential]
+	helper = cache

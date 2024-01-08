@@ -1,7 +1,8 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=5000
-SAVEHIST=1000
+SAVEHIST=5000
+# HISTDUP=erase
 setopt nomatch
 unsetopt autocd beep extendedglob
 bindkey -e
@@ -18,11 +19,11 @@ autoload -U colors && colors
 # Options:
 setopt NOTIFY
 setopt PROMPT_SUBST # Allow manually setting $PS1
-# setopt append_history # Append history to old
+setopt APPEND_HISTORY # Append history to old
 # setopt inc_append_history # Add each line to history immediately
 setopt SHARE_HISTORY # Combine all shells' histories, append to old after each line.
 setopt EXTENDED_HISTORY # Save time and date of commands. BREAKS OTHER SHELLS.
-setopt HIST_IGNORE_DUPS # Collapse repeated commands into one.
+setopt HIST_IGNORE_ALL_DUPS # Collapse repeated commands into one.
 setopt NO_HIST_BEEP # No beeping when scrolling history past the ends.
 setopt TRANSIENTRPROMPT # $RPS1 doesn't show in past lines.
 setopt EXTENDED_GLOB # Enable sophisticated pattern matching. BREAKS some stuff like '*'.
@@ -86,3 +87,7 @@ export TERMINAL=/usr/bin/alacritty
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# Plugins
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
