@@ -1,26 +1,22 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
-# HISTDUP=erase
 setopt nomatch
 unsetopt autocd beep extendedglob
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
 zstyle :compinstall filename '/home/sujuka99/.zshrc'
 
 autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-# Added manually
+# negation, so that at least one exits on 0
+[ ! "$(find ~/.zcompdump -mtime +1)" ] || compinit
+compinit -C
+
 # Autoload
 autoload -U colors && colors
+
 # Options:
 setopt NOTIFY
 setopt PROMPT_SUBST # Allow manually setting $PS1
 setopt APPEND_HISTORY # Append history to old
-# setopt inc_append_history # Add each line to history immediately
+# setopt INC_APPEND_HISTORY # Add each line to history immediately
 setopt SHARE_HISTORY # Combine all shells' histories, append to old after each line.
 setopt EXTENDED_HISTORY # Save time and date of commands. BREAKS OTHER SHELLS.
 setopt HIST_IGNORE_ALL_DUPS # Collapse repeated commands into one.
@@ -28,66 +24,52 @@ setopt NO_HIST_BEEP # No beeping when scrolling history past the ends.
 setopt TRANSIENTRPROMPT # $RPS1 doesn't show in past lines.
 setopt EXTENDED_GLOB # Enable sophisticated pattern matching. BREAKS some stuff like '*'.
 setopt CORRECT
-# Variables:
+
 PS1="[%{${fg[cyan]}%}%n%{$reset_color%}@%{${fg[red]}%}%m%{$reset_color%}]%1~%{${fg[yellow]}%}%#%{$reset_color%} " # PROMPT
 # PS2='' # Waiting for more input.
 # PS3='' # Shown in a loop started by shell's select mechanism.
 # PS4='' # For debugging. When $XTRACE is enabled $PS4 is shown preceeding lines that are about to be executed. 
 RPS1=' %~' # PROMPT on the right side of the screen. Dissapears when typed over.
-# setopt hup # Set to leave background processes running when shell exits.
-# Functions
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=5000
+# HISTDUP=erase
+HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
+
+# Ranger will use these to determine the default editor
+export VISUAL=nvim;
+export EDITOR=nvim;
+export TERMINAL=/usr/bin/alacritty # Default terminal
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
-export PATH="$PATH:/home/ivanyordanov/Programs/k9s"
-export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-# User specific aliases and functions
-alias vim="nvim"
-alias pt="poetry run pytest -vv; poetry run pre-commit run -a; git status"
-alias ptpre="poetry run pre-commit run -a; git status"
-alias ruff_check_global="ruff check --config $HOME/.config/ruff/ruff.toml"
-alias battery_status="upower -i `upower -e | grep 'BAT'`"
-alias battery_percentage="battery_status | grep 'percentage'"
-alias snx_up="zsh $HOME/.config/scripts/bakdata/snx_up.sh"
-alias drc="ruff check --config $HOME/.config/ruff/ruff.toml"
-alias poetry_reinstall="poetry lock --no-update && poetry install --sync"
 
-# Changing "ls" to "eza"
-alias ls='eza -al --color=always --group-directories-first' # my preferred listing
-alias la='eza -a --color=always --group-directories-first'  # all files and dirs
-alias ll='eza -l --color=always --group-directories-first'  # long format
-alias lt='eza -aT --color=always --group-directories-first' # tree listing
-
-# Bluetooth
-alias bt='bluetoothctl'
-alias btc='bluetoothctl connect'
-alias btd='bluetoothctl disconnect'
-
-# Query daewy data-fixture with file path as arg
-sendQueryDaewy()
-{
-    query=$(cat "$1")
-    poetry run regelwerk-parameters --query "$query" --source-file ta7-data/FT_V2_TA7_Sammelrechnung_Bundle-modified.json | jq .
-}
-
-# Variables
-# Ranger will use these to determine the default editor
-export VISUAL=nvim;
-export EDITOR=nvim;
-# Default terminal
-export TERMINAL=/usr/bin/alacritty
-# End of lines added manually
-
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# Zsh help
+unalias run-help 2>/dev/null
+autoload run-help
+autoload -Uz run-help-sudo
+autoload -Uz run-help-git
+autoload -Uz run-help-aur
+
+# Todo
+autoload -Uz ztodo # options: add, del, list, clear
+
+# User specific aliases
+source $HOME/.config/zsh.d/aliases.zsh
+
+# Keybinds
+source $HOME/.config/zsh.d/keybinds.zsh
+
+# Job-related
+source $HOME/.config/zsh.d/bakdata.zsh
+
 # Plugins
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.config/zsh.d/plugins.zsh
