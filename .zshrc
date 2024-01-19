@@ -58,6 +58,7 @@ autoload run-help
 autoload -Uz run-help-sudo
 autoload -Uz run-help-git
 autoload -Uz run-help-aur
+autoload -Uz run-help-ip
 
 # Todo
 autoload -Uz ztodo # options: add, del, list, clear
