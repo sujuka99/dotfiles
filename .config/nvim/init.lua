@@ -33,46 +33,39 @@ require("lazy").setup("plugins")
 -- require("nvim-tree").setup()
 -- require("nvim-tree.api").tree.open()
 
--- LSP Zero
-local lsp_zero = require('lsp-zero')
+-----------------------------------------------------------------------------//
+-- LSP
+-----------------------------------------------------------------------------//
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
-end)
+local cmp = require('cmp')
 
-local handlers = {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  mapping = cmp.mapping.preset.insert({
+    -- Enter key confirms completion item
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+
+    -- Ctrl + space triggers completion menu
+    ['<C-Space>'] = cmp.mapping.complete(),
+  }),
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
     end,
-    -- Next, you can provide targeted overrides for specific servers.
-    ["ruff_lsp"] = function ()
-        local lspconfig = require("lspconfig")
-        lspconfig.ruff_lsp.setup {
-            init_options = {
-                settings = {
-                    -- Any extra CLI arguments for `ruff` go here.
-                    args = {"--config=$HOME/.config/ruff/ruff.toml"},
-                }
-            }
-        }
-    end,
-}
-
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    handlers = handlers})
--- (Optional) Configure lua language server for neovim
+  },
+})
 
 -----------------------------------------------------------------------------//
 -- Utils
 -----------------------------------------------------------------------------//
-opt.clipboard = 'unnamedplus'
+-- opt.clipboard = 'unnamedplus'
+-- Could break plugins, use `:cd %:h` to set to current file or `:cd mydir`
+-- similarly to the way `cd` works in Bash
 opt.autochdir = false
 
 -----------------------------------------------------------------------------//

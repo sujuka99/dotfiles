@@ -63,6 +63,9 @@ autoload -Uz run-help-ip
 # Todo
 autoload -Uz ztodo # options: add, del, list, clear
 
+# Sticky notes
+autoload -Uz sticky-note # options: {-b} (-l)
+
 # User specific aliases
 source $HOME/.config/zsh.d/aliases.zsh
 
@@ -74,3 +77,6 @@ source $HOME/.config/zsh.d/bakdata.zsh
 
 # Plugins
 source $HOME/.config/zsh.d/plugins.zsh
+
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
