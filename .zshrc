@@ -23,6 +23,7 @@ setopt HIST_IGNORE_ALL_DUPS # Collapse repeated commands into one.
 setopt NO_HIST_BEEP # No beeping when scrolling history past the ends.
 setopt TRANSIENTRPROMPT # $RPS1 doesn't show in past lines.
 setopt EXTENDED_GLOB # Enable sophisticated pattern matching. BREAKS some stuff like '*'.
+setopt AUTOCD # Only provide path to change dir
 setopt CORRECT
 
 PS1="[%{${fg[cyan]}%}%n%{$reset_color%}@%{${fg[red]}%}%m%{$reset_color%}]%1~%{${fg[yellow]}%}%#%{$reset_color%} " # PROMPT

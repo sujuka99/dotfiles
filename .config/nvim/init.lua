@@ -36,9 +36,6 @@ require("lazy").setup("plugins")
 -----------------------------------------------------------------------------//
 -- LSP
 -----------------------------------------------------------------------------//
-vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
 local cmp = require('cmp')
 
@@ -110,6 +107,9 @@ opt.showmode = true -- display the current mode in the status line
 -----------------------------------------------------------------------------//
 -- Mappings 
 -----------------------------------------------------------------------------//
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
 -- sensible defaults
 vim.keymap.set('', 'Q', '') -- disable
@@ -117,6 +117,9 @@ vim.keymap.set('n', 'x', '"_x') -- delete char without yank
 vim.keymap.set('x', 'x', '"_x') -- delete visual selection without yank
 
 -- file explorer
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+
+-- change dir to current file's parent dir
+vim.keymap.set('n', '<leader>cd', ':cd %:h<CR>')
 
 print("Loaded nvim/init.lua")
