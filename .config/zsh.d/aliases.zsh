@@ -25,8 +25,8 @@ alias btd='bluetoothctl disconnect'
 
 # Source python env
 alias senv="source .venv/bin/activate"
-alias svim="source .venv/bin/activate; nvim'"
+alias envim="source .venv/bin/activate; nvim"
 
 # git
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias lazyconfig="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias lazyconf="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
