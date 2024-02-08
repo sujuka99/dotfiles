@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vim="nvim"
 alias pt="poetry run pytest -vv; poetry run pre-commit run -a; git status"
 alias ptpre="poetry run pre-commit run -a; git status"
@@ -11,11 +10,7 @@ alias snx_up="zsh $HOME/.config/scripts/bakdata/snx_up.sh"
 alias drc="ruff check --config $HOME/.config/ruff/ruff.toml"
 alias poetry_reinstall="poetry lock --no-update && poetry install --sync"
 alias help=run-help
-alias td="ztodo"
-alias tda="ztodo add"
-alias tdd="ztodo del"
-alias tdc="ztodo clear"
-alias tdl="ztodo list"
+alias todo="ztodo"
 
 # Changing "ls" to "eza"
 alias ls='eza -al --color=always --group-directories-first' # my preferred listing
@@ -28,4 +23,10 @@ alias bt='bluetoothctl'
 alias btc='bluetoothctl connect'
 alias btd='bluetoothctl disconnect'
 
+# Source python env
+alias senv="source .venv/bin/activate"
+alias svim="source .venv/bin/activate; nvim'"
 
+# git
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias lazyconfig="lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME"
