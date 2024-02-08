@@ -3,8 +3,8 @@ local cmd, fn, opt = vim.cmd, vim.fn, vim.opt
 local command = vim.api.nvim_create_user_command
 
 -- disable netrw at the very start of your init.lua (strongly advised)
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
@@ -60,7 +60,6 @@ cmp.setup({
 -----------------------------------------------------------------------------//
 -- Utils
 -----------------------------------------------------------------------------//
--- opt.clipboard = 'unnamedplus'
 -- Could break plugins, use `:cd %:h` to set to current file or `:cd mydir`
 -- similarly to the way `cd` works in Bash
 opt.autochdir = false
@@ -75,6 +74,10 @@ opt.tabstop = 4 -- Number of spaces tabs count for
 opt.softtabstop = 4
 opt.shiftround = true -- Round indent
 opt.joinspaces = false -- No double spaces with join after a dot
+-- Folding (doesn't work)
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldenable = false
 
 -----------------------------------------------------------------------------//
 -- Display
@@ -116,10 +119,31 @@ vim.keymap.set('', 'Q', '') -- disable
 vim.keymap.set('n', 'x', '"_x') -- delete char without yank
 vim.keymap.set('x', 'x', '"_x') -- delete visual selection without yank
 
--- file explorer
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+-- file explorer (set in the plugin)
+-- vim.keymap.set('n', '<leader>pv', vim.cmd.Lexplore)
 
 -- change dir to current file's parent dir
 vim.keymap.set('n', '<leader>cd', ':cd %:h<CR>')
+-- remove highlights
+vim.keymap.set('n', '<leader>nh', ':noh<CR>')
+
+
+-----------------------------------------------------------------------------//
+-- netrw
+-----------------------------------------------------------------------------//
+-- preview window opens in vertical split
+-- vim.g.netrw_preview = 1
+-- list as tree
+-- vim.g.netrw_liststyle = 3
+-- When previewing do a 30-70 split
+-- vim.g.netrw_winsize = 30
+-- c-tab tooggle netrw win width
+-- vim.g.netrw_usetab = 1
+-- minimum netrw window width
+-- vim.g.netrw_wiw = 15
+-- open windows on the right
+-- vim.g.netrw_altv = 1
+-- split below
+-- vim.g.netrw_alto = 1
 
 print("Loaded nvim/init.lua")
