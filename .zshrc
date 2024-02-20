@@ -23,14 +23,23 @@ setopt HIST_IGNORE_ALL_DUPS # Collapse repeated commands into one.
 setopt NO_HIST_BEEP # No beeping when scrolling history past the ends.
 setopt TRANSIENTRPROMPT # $RPS1 doesn't show in past lines.
 setopt EXTENDED_GLOB # Enable sophisticated pattern matching. BREAKS some stuff like '*'.
-setopt AUTOCD # Only provide path to change dir
 setopt CORRECT
 
-PS1="[%{${fg[cyan]}%}%n%{$reset_color%}@%{${fg[red]}%}%m%{$reset_color%}]%1~%{${fg[yellow]}%}%#%{$reset_color%} " # PROMPT
+# this variable can be changed later to change the fraction of the line 
+export PROMPT_PERCENT_OF_LINE=20
+
+# make a function, so that it can be evaluated repeatedly
+function myPromptWidth() { 
+  echo $(( ${COLUMNS:-80} * PROMPT_PERCENT_OF_LINE / 100 )) 
+}
+width_part='$(myPromptWidth)'
+
+PS1="%F{cyan}%${width_part}<…<%3~ %(?.%F{green}.%F{red})%#%f "
+# PS1="[%{${fg[cyan]}%}%n%{$reset_color%}@%{${fg[red]}%}%m%{$reset_color%}]%1~%{${fg[yellow]}%}%#%{$reset_color%} " # PROMPT
 # PS2='' # Waiting for more input.
 # PS3='' # Shown in a loop started by shell's select mechanism.
 # PS4='' # For debugging. When $XTRACE is enabled $PS4 is shown preceeding lines that are about to be executed. 
-RPS1=' %~' # PROMPT on the right side of the screen. Dissapears when typed over.
+# RPS1=' %~' # PROMPT on the right side of the screen. Dissapears when typed over.
 HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
