@@ -14,7 +14,7 @@
 	ci = commit
 [column]
 	ui = auto
-[branch]
-	sort = -comitterdate
+; [branch]
+; 	sort = -comitterdate
 [push]
 	autoSetupRemote = true
