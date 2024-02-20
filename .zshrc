@@ -34,7 +34,7 @@ function myPromptWidth() {
 }
 width_part='$(myPromptWidth)'
 
-PS1="%F{cyan}%${width_part}<…<%3~ %(?.%F{green}.%F{red})%#%f "
+PS1="%F{216}%${width_part}<…<%3~ %(?.%F{green}.%F{red})%#%f "
 # PS1="[%{${fg[cyan]}%}%n%{$reset_color%}@%{${fg[red]}%}%m%{$reset_color%}]%1~%{${fg[yellow]}%}%#%{$reset_color%} " # PROMPT
 # PS2='' # Waiting for more input.
 # PS3='' # Shown in a loop started by shell's select mechanism.
