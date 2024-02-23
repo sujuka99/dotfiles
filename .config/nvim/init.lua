@@ -131,6 +131,8 @@ vim.keymap.set('n', '<leader>cd', ':cd %:h<CR>')
 -- remove highlights
 vim.keymap.set('n', '<leader>nh', ':noh<CR>')
 
+vim.keymap.set('n', '<leader>s', ':update<CR>')
+
 
 -----------------------------------------------------------------------------//
 -- netrw
