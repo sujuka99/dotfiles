@@ -63,13 +63,16 @@ exec --no-startup-id xinput set-prop "DLL07B0:01 044E:120B" "libinput Natural Sc
 # Switch between keyboard layouts
 exec_always --no-startup-id "setxkbmap -model pc105 -layout us,bg -variant ,phonetic -option grp:alt_shift_toggle"
 
+# Set wallpaper
+exec_always --no-startup-id "feh --bg-scale Data/media/pictures/wallpapers/greyscale-mountain.jpeg"
+
 # Manage video output
 # xrandr mode for Boox Air2
 #exec_always --no-startup-id "xrandr --newmode "1872x1404_60" 221.79  1872 2008 2208 2544  1404 1405 1408 1453  -HSync +Vsync"
 # Assign Air2 mode to DisplayPort1-9, change if needed
 #exec_always --no-startup-id "xrandr --addmode DisplayPort-1-9 1872x1404_60"
 exec_always --no-startup-id "xrandr --output eDP-1 --mode 1920x1080 --rate 60.00 --primary"
-exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1280x1024 --rate 60.00 --left-of eDP-1"
+exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1280x1024 --rate 60.00 --right-of eDP-1"
 # exec_always --no-startup-id "xrandr --output HDMI2 --mode 1280x1024 --rate 60.00 --right-of eDP-1"
 # exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
 # exec_always --no-startup-id "xrandr --output DP-2-2 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
@@ -245,8 +248,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPlay exec "playerctl --player spotify,chromium,%any play-pause"
+bindsym XF86AudioPause exec "playerctl --player spotify,chromium,%any play-pause"
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
