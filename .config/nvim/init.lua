@@ -98,6 +98,7 @@ opt.listchars = {
     trail = '·',
 }
 opt.showmode = true -- display the current mode in the status line
+opt.conceallevel = 1
 
 -----------------------------------------------------------------------------//
 -- Title

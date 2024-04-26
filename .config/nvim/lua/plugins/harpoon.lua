@@ -1,6 +1,5 @@
 return {
     "theprimeagen/harpoon",
--- or                              , branch = '0.1.x',
     keys = {
         {
             "<leader>ha",
