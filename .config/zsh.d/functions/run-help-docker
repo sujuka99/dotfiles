@@ -1,0 +1,6 @@
+if [ $# -eq 0 ]; then
+    man docker
+else
+    man docker-$1
+fi
+

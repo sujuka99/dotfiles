@@ -62,13 +62,20 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+
 # Zsh help
+
+# Add custom functions to FPATH
+fpath=( $HOME/.config/zsh.d/functions "${fpath[@]}" )
+
+# Mark functions to be automatically loaded upon first reference
 unalias run-help 2>/dev/null
 autoload run-help
 autoload -Uz run-help-sudo
 autoload -Uz run-help-git
 autoload -Uz run-help-aur
 autoload -Uz run-help-ip
+autoload -Uz run-help-docker
 
 # Todo
 autoload -Uz ztodo # options: add, del, list, clear
