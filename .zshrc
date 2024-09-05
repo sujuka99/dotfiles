@@ -50,11 +50,20 @@ HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
 export VISUAL=nvim;
 export EDITOR=nvim;
 export TERMINAL=/usr/bin/alacritty # Default terminal
+
+# Add dir to path
+pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
+# if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+# then
+#     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+# fi
+pathadd "$HOME/.local/bin:$HOME/bin:"
 export PATH
 
 # Pyenv
@@ -76,6 +85,7 @@ autoload -Uz run-help-git
 autoload -Uz run-help-aur
 autoload -Uz run-help-ip
 autoload -Uz run-help-docker
+
 
 # Todo
 autoload -Uz ztodo # options: add, del, list, clear
