@@ -100,10 +100,13 @@ source $HOME/.config/zsh.d/aliases.zsh
 source $HOME/.config/zsh.d/keybinds.zsh
 
 # Job-related
-source $HOME/.config/zsh.d/bakdata.zsh
+source $HOME/.config/zsh.d/truefullstaq.zsh
 
 # Plugins
 source $HOME/.config/zsh.d/plugins.zsh
+
+# Autocompletion
+source $HOME/.config/zsh.d/autocompletion.zsh
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
