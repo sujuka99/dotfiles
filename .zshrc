@@ -100,13 +100,16 @@ source $HOME/.config/zsh.d/aliases.zsh
 source $HOME/.config/zsh.d/keybinds.zsh
 
 # Job-related
-source $HOME/.config/zsh.d/truefullstaq.zsh
+# source $HOME/.config/zsh.d/truefullstaq.zsh
 
 # Plugins
 source $HOME/.config/zsh.d/plugins.zsh
 
 # Autocompletion
 source $HOME/.config/zsh.d/autocompletion.zsh
+
+# Node version manager
+source /usr/share/nvm/init-nvm.sh
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
