@@ -67,21 +67,26 @@ exec_always --no-startup-id "setxkbmap -model pc105 -layout us,bg -variant ,phon
 exec_always --no-startup-id "feh --bg-scale Data/media/pictures/wallpapers/greyscale-mountain.jpeg"
 
 # Manage video output
+#
+# Dell Precision 7520 Native screen
+exec_always --no-startup-id "xrandr --output eDP-1 --mode 1920x1080 --rate 60.00 --primary"
+#
 # xrandr mode for Boox Air2
 #exec_always --no-startup-id "xrandr --newmode "1872x1404_60" 221.79  1872 2008 2208 2544  1404 1405 1408 1453  -HSync +Vsync"
 # Assign Air2 mode to DisplayPort1-9, change if needed
 #exec_always --no-startup-id "xrandr --addmode DisplayPort-1-9 1872x1404_60"
-exec_always --no-startup-id "xrandr --output eDP-1 --mode 1920x1080 --rate 60.00 --primary"
-exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1280x1024 --rate 60.00 --right-of eDP-1"
-# exec_always --no-startup-id "xrandr --output HDMI2 --mode 1280x1024 --rate 60.00 --right-of eDP-1"
-# exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
-# exec_always --no-startup-id "xrandr --output DP-2-2 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
-# exec_always --no-startup-id "xrandr --output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
+#
+# LG 65UF850V
+exec_always --no-startup-id "xrandr --output HDMI-2 --mode 1920x1080 --rate 60.00 --same-as eDP-1"
+# exec_always --no-startup-id "xrandr --output HDMI-2 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
+#
+# Example command
+# exec_always --no-startup-id "xrandr --output DP-2-1 --mode 1280x1024 --rate 60.00 --right-of eDP-1"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
