@@ -1,11 +1,17 @@
-preview = true
+preview = false
+
+output-format = "grouped"
+show-fixes = true
+target-version = "py312"
+exclude = ["tests/*snapshots/*"]
+
+[lint]
 ignore = [
   "E203", # whitespace before ':' -- Not PEP8 compliant, black won't correct it, add when out of nursery
   # "E501", # Line too long -- Clashes with `black`
   "D1", # Missing docstring for {} -- Inconvenient to enforce
 # The following "D" rules do not correspond to our coding style. We use the pep257 convention, but
-# "D212" should not be ignored. In ruff (0.0.291) we cannot select a rule that is excluded by specifying
-# a convention, hence our only option is to manually replicate it.
+# "D212" should not be ignored.
   "D203", # 1 blank line required before class docstring
   "D213", # Multi-line docstring summary should start at the second line
   "D214", # Section is over-indented ("{name}")
@@ -27,6 +33,7 @@ ignore = [
   "RUF012", # type class attrs with `ClassVar` -- Too strict/trigger-happy
   "UP007", # Use X | Y for type annotations -- `typer` doesn't support it
   "COM812", # Checks for the absence of trailing commas -- leads to undesirable behavior from formatters
+  "ISC001", # {name} should be imported as {asname} -- Interferes with the ruff formatter
   "PIE804", # Unnecessary `dict` kwargs -- Inconvenient to enforce
   "RET505", # Unnecessary {branch} after return statement -- Lots of false positives
   "RET506", # Unnecessary {branch} after raise statement -- Lots of false positives
@@ -76,21 +83,19 @@ select = [
   "LOG", # flake8-logging, add when out of nursery
   # "ANN",
 ]
-output-format = "grouped"
-show-fixes = true
 task-tags = ["TODO", "HACK", "FIXME", "XXX"]
-target-version = "py310"
-exclude = ["tests/*snapshots/*"]
 
-[per-file-ignores]
+[lint.per-file-ignores]
 "tests/*/__init__.py" = ["F401"]
 
-[isort]
+[lint.isort]
 split-on-trailing-comma = false
 
-[flake8-bugbear]
+[lint.flake8-bugbear]
 extend-immutable-calls = ["typer.Argument"]
 
-[flake8-type-checking]
+[lint.flake8-type-checking]
 runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+
+
 
