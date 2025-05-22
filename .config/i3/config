@@ -71,6 +71,9 @@ exec_always --no-startup-id "feh --bg-scale Data/media/pictures/wallpapers/greys
 # Dell Precision 7520 Native screen
 exec_always --no-startup-id "xrandr --output eDP-1 --mode 1920x1080 --rate 60.00 --primary"
 #
+# HP Compaq LA2306x
+exec_always --no-startup-id "xrandr --output DP-2-2 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
+#
 # xrandr mode for Boox Air2
 #exec_always --no-startup-id "xrandr --newmode "1872x1404_60" 221.79  1872 2008 2208 2544  1404 1405 1408 1453  -HSync +Vsync"
 # Assign Air2 mode to DisplayPort1-9, change if needed
