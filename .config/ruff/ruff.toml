@@ -2,7 +2,7 @@ preview = false
 
 output-format = "grouped"
 show-fixes = true
-target-version = "py312"
+target-version = "py313"
 exclude = ["tests/*snapshots/*"]
 
 [lint]
@@ -46,42 +46,49 @@ ignore = [
   "TRY003", # Avoid specifying long messages outside the exception class -- Inconvenient to enforce
 ]
 select = [
-  "F", # Pyflakes
-  "E", # pycodestyle Errors
-  "W", # pycodestyle Warnings
-  "C90", # mccabe
-  "I", # isort
-  "D", # pydocstyle
-  "UP", # pyupgrade
-  "B", # flake8-bugbear
-  "INP", # flake8-no-pep420
-  "RUF", # Ruff-specific rules
+  "ERA", # eradicate
+  "FAST", # FastAPI
   "YTT", # flake8-2020
   "ASYNC", # flake8-async
   "BLE", # flake8-blind-except
+  "B", # flake8-bugbear
   "COM", # flake8-commas
   "C4", # flake8-comprehensions
+  "DTZ", # flake8-datetimez
   "T10", # flake8-debugger
   "EM", # flake8-errmsg
   "FA", # flake8-future-annotations
+  "INT", # flake8-gettext
   "ISC", # flake8-implicit-str-concat
   "ICN", # flake8-import-conventions
+  "LOG", # flake8-logging, add when out of nursery
+  "G", # flake8-looging-format
   "INP", # flake8-no-pep420
   "PIE", # flake8-pie
-  "PT", # flake8-pytest-style
+  "PT", #flake8-pytest-style
   "Q", # flake8-quotes
   "RSE", # flake8-raise
   "RET", # flake8-return
-  "SLOT", # flake8-slots
+  "SLF", # flake8-self
   "SIM", # flake8-simplify
-  "TCH", # flake8-type-checking, configure correctly and add
+  "SLOT", # flake8-slots
+  "TID", # flake8-tidy-imports
+  "TC", # flake8-type-checking, configure correctly and add
   "PTH", # flake8-use-pathlib
+  "FLY", # flynt
+  "I", # isort
+  "C90", # mccabe
+  "PERF", # Perflint
+  "E", # pycodestyle Errors
+  "W", # pycodestyle Warnings
+  "D", # pydocstyle
+  "F", # Pyflakes
   "PGH", # pygrep-hooks
   "PL", # Pylint
-  "TRY", # tryceratops
+  "UP", # pyupgrade
   "FURB", # refurb, add when out of nursery
-  "LOG", # flake8-logging, add when out of nursery
-  # "ANN",
+  "RUF", # Ruff-specific rules
+  "TRY", # tryceratops
 ]
 task-tags = ["TODO", "HACK", "FIXME", "XXX"]
 
