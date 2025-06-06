@@ -61,6 +61,8 @@ exec nm-applet
 # Get output details with:
 # `swaymsg -t get_outputs --raw | jq '.[] | {name, make, model, serial}'`
 #
+# To place monitor on the left, put negative values for X
+#
 # wallpaper (default ones are available in /usr/share/backgrounds/sway/)
 output * {
     # Set default mode or scale for all monitors
@@ -76,9 +78,12 @@ output "BOE 0x06F1 Unknown" {
 }
 output "Hewlett Packard HP LA2306 3CQ3083855" {
     resolution 1920x1080
-    position 1920 0
+    position -1920 0
 }
-
+output "LG Electronics LG TV 0x01010101" {
+    resolution 1920x1080
+    position 0 0
+}
 ### Idle configuration
 #
 # Example configuration:
@@ -275,28 +280,20 @@ bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -2%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +2%
 bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+# Media player controls
+bindsym XF86AudioPlay exec "playerctl --player spotify,chromium,%any play-pause"
+bindsym XF86AudioPause exec "playerctl --player spotify,chromium,%any play-pause"
+bindsym XF86AudioNext exec "playerctl --player spotify,chromium,%any next"
+bindsym XF86AudioPrev exec "playerctl --player spotify,chromium,%any previous"
+
 # Special keys to adjust brightness via brightnessctl
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
 # Special key to take a screenshot with grim
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
-#
 # Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+bar swaybar_command waybar
 
 include /etc/sway/config.d/*
