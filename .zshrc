@@ -109,7 +109,9 @@ source $HOME/.config/zsh.d/plugins.zsh
 source $HOME/.config/zsh.d/autocompletion.zsh
 
 # Node version manager
-source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
