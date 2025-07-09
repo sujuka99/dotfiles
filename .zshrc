@@ -66,14 +66,11 @@ pathadd() {
 pathadd "$HOME/.local/bin:$HOME/bin:"
 export PATH
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 #Homebrew
 export HOMEBREW_BUNDLE_FILE=$HOME/.config/brewfile/Brewfile
 
+# Pyenv
+eval "$(pyenv init -)"
 
 # Zsh help
 
