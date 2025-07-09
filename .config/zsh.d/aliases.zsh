@@ -5,7 +5,6 @@ alias pt="poetry run pytest -vv; poetry run pre-commit run -a; git status"
 alias ptpre="poetry run pre-commit run -a; git status"
 alias ruff_check_global="ruff check --config $HOME/.config/ruff/ruff.toml"
 alias battery_percentage="battery_status | grep 'percentage'"
-alias snx_up="zsh $HOME/.config/scripts/bakdata/snx_up.sh"
 alias drc="ruff check --config $HOME/.config/ruff/ruff.toml"
 alias poetry_reinstall="poetry lock --no-update && poetry install --sync"
 alias help=run-help
@@ -18,9 +17,10 @@ alias ll='eza -l --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 
 # Bluetooth
-alias bt='bluetoothctl'
-alias btc='bluetoothctl connect'
-alias btd='bluetoothctl disconnect'
+alias bt='blueutil'
+alias btdxm5='blueutil --disconnect ac-80-0a-5a-f4-b9'
+alias btcxm5='blueutil --disconnect ac-80-0a-5a-f4-b9; blueutil --connect ac-80-0a-5a-f4-b9'
+alias btp='blueutil --paired'
 
 # Source python env
 alias senv="source .venv/bin/activate"
