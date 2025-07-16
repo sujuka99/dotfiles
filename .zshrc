@@ -69,6 +69,9 @@ export PATH
 #Homebrew
 export HOMEBREW_BUNDLE_FILE=$HOME/.config/brewfile/Brewfile
 
+# Cargo
+source $HOME/.cargo/env
+
 # Pyenv
 eval "$(pyenv init -)"
 
