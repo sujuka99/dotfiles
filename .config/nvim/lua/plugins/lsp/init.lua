@@ -49,7 +49,7 @@ return {
         'williamboman/mason-lspconfig.nvim',
         opts = {
           ensure_installed = {
-            'pyright',
+            'basedpyright',
             'lua_ls',
           },
           handlers = {
