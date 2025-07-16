@@ -48,7 +48,10 @@ return {
       {
         'williamboman/mason-lspconfig.nvim',
         opts = {
-          ensure_installed = {},
+          ensure_installed = {
+            'pyright',
+            'lua_ls',
+          },
           handlers = {
             function(server)
               require('lspconfig')[server].setup({
@@ -57,7 +60,7 @@ return {
             end,
             ['lua_ls'] = function()
               require('lspconfig').lua_ls.setup({
-                capabilisties = require('cmp_nvim_lsp').default_capabilities(),
+                capabilities = require('cmp_nvim_lsp').default_capabilities(),
                 settings = {
                   Lua = {
                     runtime = {
