@@ -7,7 +7,7 @@ zstyle :compinstall filename '/home/sujuka99/.zshrc'
 autoload -Uz compinit
 # negation, so that at least one exits on 0
 [ ! "$(find ~/.zcompdump -mtime +1)" ] || compinit
-compinit -C
+# compinit -C
 
 # Autoload
 autoload -U colors && colors
@@ -64,10 +64,15 @@ pathadd() {
 #     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 # fi
 pathadd "$HOME/.local/bin:$HOME/bin:"
+pathadd "/usr/local/opt/coreutils/libexec/gnubin:"
+
 export PATH
 
 #Homebrew
 export HOMEBREW_BUNDLE_FILE=$HOME/.config/brewfile/Brewfile
+
+# bigquery
+export BIGQUERYRC=$HOME/.config/bigquery/.bigqueryrc
 
 # Cargo
 source $HOME/.cargo/env
