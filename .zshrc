@@ -1,13 +1,18 @@
+# zmodload zsh/zprof
 setopt nomatch
 unsetopt autocd beep extendedglob
 bindkey -e
 
-zstyle :compinstall filename '/home/sujuka99/.zshrc'
-
 autoload -Uz compinit
-# negation, so that at least one exits on 0
-[ ! "$(find ~/.zcompdump -mtime +1)" ] || compinit
-# compinit -C
+if [[ -f ~/.zcompdump ]]; then
+  if [[ ~/.zcompdump -nt /etc/shells ]]; then
+    compinit -C  # Cache is new → trust it
+  else
+    compinit     # Cache is old → rebuild it
+  fi
+else
+  compinit       # No cache → initialize completions
+fi
 
 # Autoload
 autoload -U colors && colors
@@ -80,6 +85,9 @@ source $HOME/.cargo/env
 # Pyenv
 eval "$(pyenv init -)"
 
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+
 # Zsh help
 
 # Add custom functions to FPATH
@@ -116,10 +124,8 @@ source $HOME/.config/zsh.d/plugins.zsh
 # Autocompletion
 source $HOME/.config/zsh.d/autocompletion.zsh
 
-# Node version manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 zstyle ':completion:*' menu select
+zstyle :compinstall filename '/home/sujuka99/.zshrc'
 fpath+=~/.zfunc
+# zprof
