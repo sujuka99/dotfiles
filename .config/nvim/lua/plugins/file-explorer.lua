@@ -8,11 +8,11 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     keys = {
-        {
-	    '<leader>pv',
-	    '<cmd>Neotree toggle<cr>',
-	    desc = 'Toggle Neotree',
-	}
+      {
+          '<leader>e',
+          '<cmd>Neotree toggle<cr>',
+          desc = 'Toggle Neotree',
+      },
     }
   },
   {
