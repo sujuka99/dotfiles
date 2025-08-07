@@ -2,10 +2,10 @@
 -- LSP
 -----------------------------------------------------------------------------//
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldcolumn = "0"
-vim.opt.foldtext = ""
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldcolumn = '0'
+vim.opt.foldtext = ''
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1
 vim.opt.foldnestmax = 4
@@ -40,11 +40,11 @@ vim.opt.linebreak = true -- wrap, but on words, not randomly
 vim.opt.virtualedit = 'onemore' -- allow cursor to move past end of line in visual block mode
 vim.opt.list = true -- show invisible characters
 vim.opt.listchars = {
-    eol = ' ', -- ¬↴
-    tab = '→ ',
-    extends = '…',
-    precedes = '…',
-    trail = '·',
+  eol = ' ', -- ¬↴
+  tab = '→ ',
+  extends = '…',
+  precedes = '…',
+  trail = '·',
 }
 vim.opt.showmode = true -- display the current mode in the status line
 vim.opt.conceallevel = 1

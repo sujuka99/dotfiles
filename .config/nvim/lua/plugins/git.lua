@@ -1,10 +1,10 @@
 return {
   {
-    "lewis6991/gitsigns.nvim"
+    'lewis6991/gitsigns.nvim',
   },
   {
     'akinsho/git-conflict.nvim',
-    version = "*",
-    config = true
-  }
+    version = '*',
+    config = true,
+  },
 }

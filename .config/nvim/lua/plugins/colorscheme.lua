@@ -1,11 +1,11 @@
 return {
   {
-    "navarasu/onedark.nvim",
+    'navarasu/onedark.nvim',
     lazy = false,
     config = function()
-      require('onedark').setup {
-        style = 'warmer'
-      }
+      require('onedark').setup({
+        style = 'warmer',
+      })
       require('onedark').load()
     end,
   },
