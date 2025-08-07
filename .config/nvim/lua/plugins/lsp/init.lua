@@ -59,7 +59,40 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    init = function() end,
+    config = function()
+      local lspconfig = require('lspconfig')
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+      if cmp_ok then
+        capabilities = cmp_nvim_lsp.default_capabilities()
+      end
+      local on_attach = function(_, bufnr)
+        local opts = { buffer = bufnr }
+        local keymap = vim.keymap.set
+        keymap('n', 'gd', vim.lsp.buf.definition, opts)
+      end
+      local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = { globals = { 'vim' } },
+              workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file('', true),
+              },
+              telemetry = { enable = false },
+            },
+          },
+        },
+        basedpyright = {},
+      }
+
+      for name, config in pairs(servers) do
+        config.capabilities = capabilities
+        config.on_attach = on_attach
+        lspconfig[name].setup(config)
+      end
+    end,
     dependencies = {
       'nvim-cmp',
     },
