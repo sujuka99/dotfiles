@@ -70,6 +70,7 @@ return {
         local opts = { buffer = bufnr }
         local keymap = vim.keymap.set
         keymap('n', 'gd', vim.lsp.buf.definition, opts)
+        keymap('n', 'gl', vim.diagnostic.open_float, opts)
       end
       local servers = {
         lua_ls = {
@@ -110,4 +111,7 @@ return {
       'neovim/nvim-lspconfig',
     },
   },
+  {
+    'mfussenegger/nvim-jdtls',
+  }
 }
