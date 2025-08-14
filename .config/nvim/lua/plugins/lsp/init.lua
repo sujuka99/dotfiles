@@ -1,86 +1,117 @@
-local au = vim.api.nvim_create_augroup('LspAttach', { clear = true })
 return {
   {
-    'neovim/nvim-lspconfig',
-    event = { 'BufReadPost', 'BufNewFile' },
-    init = function()
-      -- client log level
-      vim.lsp.set_log_level(vim.lsp.log_levels.INFO)
+    'mason-org/mason.nvim',
+    opts = {},
+  },
+  {
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp', -- LSP completion
+      'hrsh7th/cmp-buffer', -- Buffer words
+      'hrsh7th/cmp-path', -- Filesystem paths
+      'hrsh7th/cmp-cmdline', -- Cmdline completion
+      'L3MON4D3/LuaSnip', -- Snippets
+      'saadparwaiz1/cmp_luasnip', -- Snippet integration
+    },
+    config = function()
+      local cmp = require('cmp')
+      local luasnip = require('luasnip')
 
-      vim.api.nvim_create_user_command('Format', function()
-        vim.lsp.buf.format { async = false }
-      end, {})
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = au,
-        desc = 'LSP actions',
-        callback = function(args)
-          local bufnr = args.buf
-          local function map(mode, lhs, rhs)
-            vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
-          end
-
-          -- these will be buffer-local keybindings
-          -- because they only work if you have an active language server
-
-          map('n', 'K', vim.lsp.buf.hover)
-          map('n', 'gd', vim.lsp.buf.definition)
-          map('n', 'gD', vim.lsp.buf.declaration)
-          map('n', 'gi', vim.lsp.buf.implementation)
-          map('n', 'go', vim.lsp.buf.type_definition)
-          map('n', 'gr', vim.lsp.buf.references)
-          map('n', 'gs', vim.lsp.buf.signature_help)
-          map('n', '<F2>', vim.lsp.buf.rename)
-          map({'n', 'x'}, '<F3>', function() vim.lsp.buf.format({async = true})end)
-          map('n', '<F4>', vim.lsp.buf.code_action)
-        end
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-Space>'] = cmp.mapping.complete(),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+        }, {
+          { name = 'buffer' },
+          { name = 'path' },
+        }),
+      })
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' },
+        },
+      })
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          {
+            name = 'cmdline',
+            option = {
+              ignore_cmds = { 'Man', '!' },
+            },
+          },
+        }),
       })
     end,
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/nvim-cmp',
-      'L3MON4D3/LuaSnip',
-      'kmonad/kmonad-vim',
-      {
-        'williamboman/mason.nvim',
-        config = true,
-      },
-      {
-        'williamboman/mason-lspconfig.nvim',
-        opts = {
-          ensure_installed = {
-            'basedpyright',
-            'lua_ls',
-          },
-          handlers = {
-            function(server)
-              require('lspconfig')[server].setup({
-                capabilities = require('cmp_nvim_lsp').default_capabilities(),
-              })
-            end,
-            ['lua_ls'] = function()
-              require('lspconfig').lua_ls.setup({
-                capabilities = require('cmp_nvim_lsp').default_capabilities(),
-                settings = {
-                  Lua = {
-                    runtime = {
-                      version = 'LuaJIT'
-                    },
-                    diagnostics = {
-                      globals = {'vim'},
-                    },
-                    workspace = {
-                      library = {
-                        vim.env.VIMRUNTIME,
-                      }
-                    }
-                  }
-                }
-              })
-            end,
+  },
+  {
+    'neovim/nvim-lspconfig',
+    config = function()
+      local lspconfig = require('lspconfig')
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+      if cmp_ok then
+        capabilities = cmp_nvim_lsp.default_capabilities()
+      end
+      local on_attach = function(_, bufnr)
+        local opts = { buffer = bufnr }
+        local keymap = vim.keymap.set
+        keymap('n', 'gd', vim.lsp.buf.definition, opts)
+        keymap('n', 'gl', vim.diagnostic.open_float, opts)
+      end
+      local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = { globals = { 'vim' } },
+              workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file('', true),
+              },
+              telemetry = { enable = false },
+            },
           },
         },
-      },
-    }
+        basedpyright = {},
+      }
+
+      for name, config in pairs(servers) do
+        config.capabilities = capabilities
+        config.on_attach = on_attach
+        lspconfig[name].setup(config)
+      end
+    end,
+    dependencies = {
+      'nvim-cmp',
+    },
   },
+  {
+    'mason-org/mason-lspconfig.nvim',
+    opts = {
+      ensure_installed = {
+        'lua_ls',
+        'basedpyright',
+      },
+    },
+    dependencies = {
+      'mason-org/mason.nvim',
+      'neovim/nvim-lspconfig',
+    },
+  },
+  {
+    'mfussenegger/nvim-jdtls',
+  }
 }

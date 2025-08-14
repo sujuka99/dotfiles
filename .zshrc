@@ -68,7 +68,9 @@ pathadd() {
 # then
 #     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 # fi
-pathadd "$HOME/.local/bin:$HOME/bin:"
+pathadd "$HOME/bin"
+pathadd "$HOME/.local/bin"
+pathadd "$HOME/.local/bin/vivify-server"
 pathadd "/usr/local/opt/coreutils/libexec/gnubin:"
 
 export PATH
