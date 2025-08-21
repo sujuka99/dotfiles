@@ -32,7 +32,7 @@ vim.opt.joinspaces = false -- No double spaces with join after a dot
 -- Display
 -----------------------------------------------------------------------------//
 vim.opt.number = true -- line numbers
-vim.opt.relativenumber = false -- relative line numbers
+vim.opt.relativenumber = true -- relative line numbers
 vim.opt.numberwidth = 2
 vim.opt.signcolumn = 'yes:1' -- 'auto:1-2'
 vim.opt.cursorline = true
