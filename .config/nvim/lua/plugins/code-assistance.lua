@@ -1,4 +1,5 @@
 return {
+  enabled=false,
   "olimorris/codecompanion.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -21,6 +22,7 @@ return {
       gemini = function()
         return require("codecompanion.adapters").extend("gemini", {
           env = {
+            -- api_key = "cmd:cat $HOME/.secrets/api-gemini",
             api_key = "cmd:cat $HOME/.secrets/api-gemini",
           }
         })
