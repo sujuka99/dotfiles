@@ -3,6 +3,19 @@ setopt nomatch
 unsetopt autocd beep extendedglob
 bindkey -e
 
+fpath=(
+  $HOME/.config/zsh.d/functions # Custom functions
+  $HOME/.config/zsh.d/autocompletion # Custom completion
+  ~/.zfunc
+  $(brew --prefix)/share/zsh/site-functions
+  "${fpath[@]}"
+)
+
+# Configure completion behavior, set styles
+zstyle ':completion:*' menu select
+zstyle :compinstall filename '/home/sujuka99/.zshrc'
+
+# Initialize completion
 autoload -Uz compinit
 if [[ -f ~/.zcompdump ]]; then
   if [[ ~/.zcompdump -nt /etc/shells ]]; then
@@ -72,6 +85,7 @@ pathadd "$HOME/bin"
 pathadd "$HOME/.local/bin"
 pathadd "$HOME/.local/bin/vivify-server"
 pathadd "/usr/local/opt/coreutils/libexec/gnubin:"
+pathadd "$HOME/.integrationcli/bin"
 
 export PATH
 
@@ -92,8 +106,6 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Zsh help
 
-# Add custom functions to FPATH
-fpath=( $HOME/.config/zsh.d/functions "${fpath[@]}" )
 
 # Mark functions to be automatically loaded upon first reference
 unalias run-help 2>/dev/null
@@ -117,17 +129,7 @@ source $HOME/.config/zsh.d/aliases.zsh
 # Keybinds
 source $HOME/.config/zsh.d/keybinds.zsh
 
-# Job-related
-# source $HOME/.config/zsh.d/truefullstaq.zsh
-
 # Plugins
 source $HOME/.config/zsh.d/plugins.zsh
 
-# Autocompletion
-source $HOME/.config/zsh.d/autocompletion.zsh
-
-
-zstyle ':completion:*' menu select
-zstyle :compinstall filename '/home/sujuka99/.zshrc'
-fpath+=~/.zfunc
 # zprof
