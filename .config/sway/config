@@ -63,27 +63,27 @@ exec nm-applet
 #
 # To place monitor on the left, put negative values for X
 #
-# wallpaper (default ones are available in /usr/share/backgrounds/sway/)
+# # wallpaper (default ones are available in /usr/share/backgrounds/sway/)
 output * {
     # Set default mode or scale for all monitors
-    bg /home/sujuka99/Data/media/pictures/wallpapers/greyscale-mountain.jpeg fill
+    bg "/home/ivan/images/pirin_planina_lazar_tomov_geografsko_chetivo/kam_varhovete_na_pirin.jpg" fit
     scale 1
     transform normal
 }
 
 # Dell Precision 7520 primary screen
-output "BOE 0x06F1 Unknown" {
-    resolution 1920x1080
-    position 0 0
-}
-output "Hewlett Packard HP LA2306 3CQ3083855" {
-    resolution 1920x1080
-    position -1920 0
-}
-output "LG Electronics LG TV 0x01010101" {
-    resolution 1920x1080
-    position 0 0
-}
+# output "BOE 0x06F1 Unknown" {
+#     resolution 1920x1080
+#     position 0 0
+# }
+# output "Hewlett Packard HP LA2306 3CQ3083855" {
+#     resolution 1920x1080
+#     position -1920 0
+# }
+# output "LG Electronics LG TV 0x01010101" {
+#     resolution 1920x1080
+#     position 0 0
+# }
 ### Idle configuration
 #
 # Example configuration:
@@ -145,6 +145,8 @@ input * {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    bindsym $mod+l+k exec "swaylock"
 #
 # Moving around:
 #
