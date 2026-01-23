@@ -63,7 +63,8 @@ pathadd() {
 # then
 #     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 # fi
-pathadd "$HOME/.local/bin:$HOME/bin:"
+pathadd "$HOME/.local/bin"
+pathadd "$HOME/bin"
 export PATH
 
 # Pyenv
