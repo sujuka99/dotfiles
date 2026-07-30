@@ -128,12 +128,15 @@ output "Dell Inc. DELL U2414H 9TG4645O88ML" {
 input "type:touchpad" {
     tap enabled
     natural_scroll enabled
+    click_method clickfinger
+    drag_lock enabled
 }
 
 input * {
     xkb_layout us,bg,de
     xkb_variant ,phonetic
     xkb_options grp:alt_shift_toggle
+    xkb_numlock enabled
 }
 ### Key bindings
 #
