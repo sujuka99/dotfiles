@@ -71,15 +71,30 @@ output * {
     transform normal
 }
 
-# Dell Precision 7520 primary screen
-# output "BOE 0x06F1 Unknown" {
-#     resolution 1920x1080
-#     position 0 0
-# }
+# Dell Precision 7680 primary screen
+output "BOE 0x0B99 Unknown" {
+    resolution 1920x1200
+    position 0 0
+}
 # output "Hewlett Packard HP LA2306 3CQ3083855" {
 #     resolution 1920x1080
 #     position -1920 0
 # }
+# AGN IFP-7502 (HDMI-A-2) — 4K panel, scaled up so UI isn't tiny
+output "HDMI-A-2" {
+    scale 2
+    position 0 -1080
+}
+
+# Kassel Dock: right Dell U2414H — placed above the laptop screen so the cursor
+# transitions into it from the top edge of eDP-1
+output "Dell Inc. DELL U2414H 292K474B2HFL" {
+    position 0 -1080
+}
+# Kassel Dock: left Dell U2414H — stays to the right of the laptop screen
+output "Dell Inc. DELL U2414H 9TG4645O88ML" {
+    position -1920 -1080
+}
 # output "LG Electronics LG TV 0x01010101" {
 #     resolution 1920x1080
 #     position 0 0
@@ -116,7 +131,7 @@ input "type:touchpad" {
 }
 
 input * {
-    xkb_layout us,bg
+    xkb_layout us,bg,de
     xkb_variant ,phonetic
     xkb_options grp:alt_shift_toggle
 }
